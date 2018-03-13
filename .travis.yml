@@ -4,7 +4,17 @@ git:
   submodules: false
   depth: 1
 
+language:  cpp
+compiler:  gcc
+
 install:  true
 
 script:
   - echo 'hello world'
+  - g++ a.cpp
+
+after_success:
+  - ./a.out
+
+notifications:
+  email: false
