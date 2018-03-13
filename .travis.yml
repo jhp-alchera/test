@@ -25,3 +25,10 @@ matrix:
       compiler: clang
       script:
         - clang++ a.cpp
+    - language: android
+      android:
+        components:
+          - tools
+          - platform-tools
+          - android-21
+          - sys-img-armeabi-v7a-android-21
