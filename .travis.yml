@@ -9,12 +9,19 @@ compiler:  gcc
 
 install:  true
 
-script:
-  - echo 'hello world'
-  - g++ a.cpp
-
 after_success:
   - ./a.out
 
 notifications:
   email: false
+
+matrix:
+  include:
+    - os: linux
+      compiler: gcc
+      script:
+        - g++ a.cpp
+    - os: osx
+      compiler: clang
+      script:
+        - clang++ a.cpp
