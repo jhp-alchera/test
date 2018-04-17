@@ -1,0 +1,44 @@
+sudo: false
+
+language: cpp
+compiler: gcc
+
+os: linux
+dist: trusty
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-6
+    - libc++-dev  
+
+before_script:
+  - mkdir -p build && cd build && pwd
+  - export CC=gcc-6; export CXX=g++-6;
+
+script:
+  - cmake -DBUILD_SHARED_LIBS=$BUILD_SHARED -DCMAKE_BUILD_TYPE=$CONFIG ..
+  - make VERBOSE=1
+
+matrix: 
+  include:
+    # Linux : x86_64 Debug Static
+    - env:
+      - CONFIG=Debug
+      - BUILD_SHARED=false 
+      
+    # Linux : x86_64 Debug Dynamic
+    - env:
+      - CONFIG=Debug
+      - BUILD_SHARED=true 
+  
+    # Linux : x86_64 Release Static
+    - env:
+      - CONFIG=Release
+      - BUILD_SHARED=false
+
+    # Linux : x86_64 Release Dynamic
+    - env:
+      - CONFIG=Release
+      - BUILD_SHARED=true

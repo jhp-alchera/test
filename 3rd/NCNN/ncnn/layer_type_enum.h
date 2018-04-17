@@ -1,0 +1,7 @@
+Concat = 0,
+Convolution = 1,
+Eltwise = 2,
+Input = 3,
+Pooling = 4,
+ReLU = 5,
+ConvolutionDepthWise = 6,
